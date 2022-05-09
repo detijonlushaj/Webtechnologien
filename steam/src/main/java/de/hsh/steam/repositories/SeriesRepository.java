@@ -10,6 +10,8 @@ import de.hsh.steam.entities.Score;
 import de.hsh.steam.entities.Series;
 import de.hsh.steam.entities.Streamingprovider;
 import de.hsh.steam.entities.User;
+import de.hsh.steam.entities.Rating;
+
 
 // das SeriesDirectory ist eine Abstraktion der Datenbank
 // es hält alle Daten vor und bietet Funktionen zum Anlegen, Ändern und Suchen von Objekten 
@@ -26,6 +28,36 @@ public abstract class SeriesRepository  {
 	public SeriesRepository(){
 		this.allSeries = new ArrayList<Series>();
 		this.allUsers = new ArrayList<User>();
+
+		this.allSeries = new ArrayList<Series>();
+		this.allUsers = new ArrayList<User>();
+		this.allUsers.add(new User("Detijon"	, "password"));
+		this.allUsers.add(new User("Schehat"	, "password"));
+		this.allUsers.add(new User("Furkan"	, "password"));
+		this.allUsers.add(new User("Aland"	, "password"));
+
+		Series serie1 = new Series("Dark"			, 3	, Genre.Drama			, Streamingprovider.Netflix);
+		Series serie2 = new Series("Breaking Bad"	, 7	, Genre.ScienceFiction	, Streamingprovider.AmazonPrime);
+		Series serie3 = new Series("Game Of Thrones"	, 10	, Genre.Thriller		, Streamingprovider.Sky);
+
+		this.allSeries.add(serie1);
+		this.allSeries.add(serie2);
+		this.allSeries.add(serie3);
+
+		this.allUsers.get(0).rate(serie1, Score.good		, "Detijon");
+		this.allUsers.get(0).rate(serie2, Score.bad			, "Detijon");
+		this.allUsers.get(0).rate(serie3, Score.mediocre	, "Detijon");
+		this.allSeries.get(0).getSeenBy().add(this.allUsers.get(0));
+		this.allSeries.get(1).getSeenBy().add(this.allUsers.get(0));
+		this.allSeries.get(2).getSeenBy().add(this.allUsers.get(0));
+
+		this.allUsers.get(1).rate(serie1, Score.bad			, "Schehat");
+		this.allUsers.get(1).rate(serie2, Score.very_good	, "Schehat");
+		this.allUsers.get(1).rate(serie3, Score.very_good	, "Schehat");
+		this.allSeries.get(0).getSeenBy().add(this.allUsers.get(1));
+		this.allSeries.get(1).getSeenBy().add(this.allUsers.get(1));
+		this.allSeries.get(2).getSeenBy().add(this.allUsers.get(1));
+
 	}
 
 	

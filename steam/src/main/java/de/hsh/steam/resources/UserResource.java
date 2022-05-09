@@ -1,7 +1,6 @@
 package de.hsh.steam.resources;
 
 import java.util.List;
-
 import de.hsh.steam.entities.User;
 import de.hsh.steam.repositories.SerializedSeriesRepository;
 import de.hsh.steam.services.SteamService;
@@ -35,7 +34,7 @@ public class UserResource {
 
     @GET
     @Path("/{name}")
-    public Response get(@PathParam("name")String name){
+    public Response getUser(@PathParam("name")String name){
         User user = this.serializedSeriesRepository.getUserObject(name);
         if (user == null){
             return Response.status(404).build();
@@ -44,8 +43,9 @@ public class UserResource {
         }
     }
 
+
     @POST
-    public Response create(User user, @Context UriInfo uriInfo){        
+    public Response createUser(User user, @Context UriInfo uriInfo){        
         if( steamService.newUser(user.getUsername(), user.getPassword())){
             return Response.status(409).build();
         } else {
@@ -57,5 +57,9 @@ public class UserResource {
         }        
     }
 
+    @Path("/{name}/ratings")
+    public RatingResource getRating(){
+        return new RatingResource();
+    }
 
 }
