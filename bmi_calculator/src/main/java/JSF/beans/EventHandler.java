@@ -26,7 +26,7 @@ public class EventHandler {
         double bmi = cal.calculateBMI(person.getWeight(),person.getHeight());
         person.setBmi(bmi);
         
-        return "bmi_result.xhtml";
+        return "/JSF/bmi_result.xhtml";
     }
 
     public String createMessage(Person person) {
