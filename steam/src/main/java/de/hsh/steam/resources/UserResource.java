@@ -11,10 +11,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.util.List;
-import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
@@ -26,16 +24,14 @@ import javax.ws.rs.core.UriBuilder;
 /**
  * REST Web Service
  *
- * @author SAbde
+ * @author lushaj
  */
 @Path("users")
 @XmlRootElement
-@RequestScoped
 public class UserResource {
-    @Inject
-    SteamService steamService;
-    @Inject
-    SerializedSeriesRepository serializedSeriesRepository;
+
+    SteamService steamService = SteamService.getInstance();
+    SerializedSeriesRepository serializedSeriesRepository = SerializedSeriesRepository.getInstance();
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -51,28 +47,31 @@ public class UserResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("/{name}")
-    public Response getUser(@PathParam("name")String name){
+    public Response getUser(@PathParam("name") String name) {
         User user = this.serializedSeriesRepository.getUserObject(name);
-        if (user == null){
+        if (user == null) {
             return Response.status(404).build();
         } else {
             return Response.ok().entity(user).build();
         }
     }
 
-
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response createUser(User user, @Context UriInfo uriInfo){        
-        if( steamService.newUser(user.getUsername(), user.getPassword())){
+    public Response createUser(User user, @Context UriInfo uriInfo) {
+
+        boolean usernametaken = steamService.newUser(user.getUsername(), user.getPassword());
+
+        if (usernametaken == false) {
             return Response.status(409).build();
         } else {
-            this.serializedSeriesRepository.registerUser(user);
             UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
             uriBuilder.path(user.getUsername());
             user = this.serializedSeriesRepository.getUserObject(user.getUsername());
+
             return Response.created(uriBuilder.build()).entity(user).build();
-        }        
+        }
     }
+
 }

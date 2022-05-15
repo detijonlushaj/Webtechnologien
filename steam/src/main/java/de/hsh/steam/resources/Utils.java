@@ -13,16 +13,19 @@ import de.hsh.steam.entities.Streamingprovider;
  * @author SAbde
  */
 public class Utils {
-     public static Genre stringToGenre(String genre) {
-        if (genre == null) return null;
+
+    public static Genre stringToGenre(String genre) {
+        if (genre == null) {
+            return null;
+        }
         switch (genre.toLowerCase()) {
-           case "thriller":
+            case "thriller":
                 return Genre.Thriller;
-            case "sciencefiction": 
+            case "sciencefiction":
                 return Genre.ScienceFiction;
             case "drama":
                 return Genre.Drama;
-            case "action": 
+            case "action":
                 return Genre.Action;
             case "comedy":
                 return Genre.Comedy;
@@ -30,23 +33,29 @@ public class Utils {
                 return Genre.Documentary;
             default:
                 return null;
-       }
+        }
     }
+
     public static Streamingprovider stringToProvider(String provider) {
-        if (provider == null) return null;
+        if (provider == null) {
+            return null;
+        }
         switch (provider.toLowerCase()) {
-           case "netflix":
+            case "netflix":
                 return Streamingprovider.Netflix;
-            case "amazonprime": 
+            case "amazonprime":
                 return Streamingprovider.AmazonPrime;
             case "sky":
                 return Streamingprovider.Sky;
             default:
                 return null;
-       }
-    } 
+        }
+    }
+
     public static Score stringToScore(String score) {
-        if (score == null) return null;
+        if (score == null) {
+            return null;
+        }
         switch (score.toLowerCase()) {
             case "bad":
                 return Score.bad;
