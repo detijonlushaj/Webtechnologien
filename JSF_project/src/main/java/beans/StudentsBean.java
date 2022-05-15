@@ -17,7 +17,6 @@ import javax.inject.Named;
 public class StudentsBean implements Serializable{
 
   private List<Student> studList;
-  private int index = 1;
 
   public StudentsBean() {
     studList = new ArrayList<>();
@@ -31,16 +30,10 @@ public class StudentsBean implements Serializable{
   }
   
   public String changeStud(int s){
-      index = s;
       return "DataTable_EditStudent.xhtml";
   }
   
-  public int getIndex(){
-      return index;
-  }
-  
  public String goBack(){
-      
       return "DataTable_ShowStudents.xhtml";
   }
 
