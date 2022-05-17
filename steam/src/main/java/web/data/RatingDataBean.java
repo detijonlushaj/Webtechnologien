@@ -7,7 +7,6 @@ package web.data;
 import de.hsh.steam.entities.Genre;
 import de.hsh.steam.entities.Rating;
 import de.hsh.steam.entities.Score;
-import de.hsh.steam.entities.Series;
 import de.hsh.steam.entities.Streamingprovider;
 import jakarta.enterprise.context.RequestScoped;
 import java.util.List;
@@ -21,11 +20,11 @@ import javax.inject.Named;
 @RequestScoped
 public class RatingDataBean {
 
-    private String title;
-    private int seasons;
-    private int genre;
-    private int platform;
-    private int score;
+    private String title = null;
+    private int seasons = 0;
+    private int genre = 10;
+    private int streamingprovider = 10;
+    private int score = 10;
 
     private List<Rating> ratingList;
 
@@ -45,51 +44,51 @@ public class RatingDataBean {
     }
 
     public Genre getGenre() {
-        if (genre == 1) {
+        if (genre == 0) {
             return Genre.Thriller;
         }
-        if (genre == 2) {
+        if (genre == 1) {
             return Genre.ScienceFiction;
         }
-        if (genre == 3) {
+        if (genre == 2) {
             return Genre.Drama;
         }
-        if (genre == 4) {
+        if (genre == 3) {
             return Genre.Action;
         }
-        if (genre == 5) {
+        if (genre == 4) {
             return Genre.Comedy;
         }
-        if (genre == 6) {
+        if (genre == 5) {
             return Genre.Documentary;
         }
         return null;
     }
 
     public Streamingprovider getStreamingprovider() {
-        if (platform == 1) {
+        if (streamingprovider == 0) {
             return Streamingprovider.Netflix;
         }
-        if (platform == 2) {
+        if (streamingprovider == 1) {
             return Streamingprovider.AmazonPrime;
         }
-        if (platform == 3) {
+        if (streamingprovider == 2) {
             return Streamingprovider.Sky;
         }
         return null;
     }
 
     public Score getScore() {
-        if (genre == 1) {
+        if (score == 0) {
             return Score.bad;
         }
-        if (genre == 2) {
+        if (score == 1) {
             return Score.mediocre;
         }
-        if (genre == 3) {
+        if (score == 2) {
             return Score.good;
         }
-        if (genre == 4) {
+        if (score == 3) {
             return Score.very_good;
         }
         return null;
@@ -113,7 +112,7 @@ public class RatingDataBean {
     }
 
     public void setStreamingprovider(int i) {
-        this.platform = i;
+        this.streamingprovider = i;
     }
 
     public void setScore(int s) {
@@ -125,4 +124,7 @@ public class RatingDataBean {
         this.ratingList.add(r);
     }
 
+    public void clearList(){
+        this.ratingList.clear();
+    }
 }

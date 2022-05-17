@@ -14,6 +14,7 @@ import jakarta.enterprise.context.RequestScoped;
 import java.util.ArrayList;
 import javax.inject.Named;
 import web.data.RatingDataBean;
+import web.data.UserDataBean;
 
 /**
  *
@@ -22,26 +23,33 @@ import web.data.RatingDataBean;
 @Named(value = "ratingEventNavigator")
 @RequestScoped
 public class RatingEventNavigator {
-
+    
     SteamService steamservice = SteamService.getInstance();
 
-    
     /**
      * Creates a new instance of RatingEventNavigator
      */
     public RatingEventNavigator() {
     }
     
-    public void find(RatingDataBean ratingDataBean){ 
+    public void find(UserDataBean user, RatingDataBean ratingDataBean) {
+        ratingDataBean.clearList(); //clearen vor der neuen operation
         
-//        ArrayList<Series> series = steamservice.search(, ratingDataBean., platform, score);
+        ArrayList<Series> series = steamservice.search(user.getUsername(), ratingDataBean.getGenre(), ratingDataBean.getStreamingprovider(), ratingDataBean.getScore());
+        for (Series s : series) {
+            Rating r = steamservice.getRating(s.getTitle(), user.getUsername());
+            if (r != null) {
+                ratingDataBean.addRatingToList(r);
+            }
+        }
         
-//        for (Series s : series){
-//            
-//        }}
     }
     
-    public void addSeries(RatingDataBean ratingDataBean){
+    public void addSeries(UserDataBean user, RatingDataBean ratingDataBean) {
+        ratingDataBean.clearList(); //clearen vor der neuen operation
+        
+        steamservice.addOrModifySeries(ratingDataBean.getTitle(), ratingDataBean.getSeasons(), ratingDataBean.getGenre(), Streamingprovider.Sky, 
+                user.getUsername(), ratingDataBean.getScore(), "test");
         
     }
     

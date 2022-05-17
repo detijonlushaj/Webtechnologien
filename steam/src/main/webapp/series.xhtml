@@ -29,23 +29,23 @@
                 <div class="form-group">
                     Genre:
                     <h:selectOneMenu class="form-control" id="genre" value = "#{ratingDataBean.genre}"> 
-                        <f:selectItem itemValue = "0" itemLabel = "" />                         
-                        <f:selectItem itemValue = "1" itemLabel = "Thriller" /> 
-                        <f:selectItem itemValue = "2" itemLabel = "Science Fiction" /> 
-                        <f:selectItem itemValue = "3" itemLabel = "Drama" /> 
-                        <f:selectItem itemValue = "4" itemLabel = "Action" /> 
-                        <f:selectItem itemValue = "5" itemLabel = "Comedy" /> 
-                        <f:selectItem itemValue = "6" itemLabel = "Documentary" /> 
+                        <f:selectItem itemValue = "10" itemLabel = "" />                         
+                        <f:selectItem itemValue = "0" itemLabel = "Thriller" /> 
+                        <f:selectItem itemValue = "1" itemLabel = "Science Fiction" /> 
+                        <f:selectItem itemValue = "2" itemLabel = "Drama" /> 
+                        <f:selectItem itemValue = "3" itemLabel = "Action" /> 
+                        <f:selectItem itemValue = "4" itemLabel = "Comedy" /> 
+                        <f:selectItem itemValue = "5" itemLabel = "Documentary" /> 
                     </h:selectOneMenu> 
                 </div>
 
                 <div class="form-group">
                     Plattform:
                     <h:selectOneMenu class="form-control" id="streamingplattform" value = "#{ratingDataBean.streamingprovider}"> 
-                        <f:selectItem itemValue = "0" itemLabel = "" />  
-                        <f:selectItem itemValue = "1" itemLabel = "Netflix" /> 
-                        <f:selectItem itemValue = "2" itemLabel = "Amazon Prime" /> 
-                        <f:selectItem itemValue = "3" itemLabel = "Sky" /> 
+                        <f:selectItem itemValue = "10" itemLabel = "" />  
+                        <f:selectItem itemValue = "0" itemLabel = "Netflix" /> 
+                        <f:selectItem itemValue = "1" itemLabel = "Amazon Prime" /> 
+                        <f:selectItem itemValue = "2" itemLabel = "Sky" /> 
                     </h:selectOneMenu> 
 
                 </div>
@@ -53,20 +53,20 @@
                 <div class="form-group">
                     Rating
                     <h:selectOneMenu class="form-control" id="rating" value = "#{ratingDataBean.score}">
-                        <f:selectItem itemValue = "0" itemLabel = "" />
-                        <f:selectItem itemValue = "1" itemLabel = "bad" /> 
-                        <f:selectItem itemValue = "2" itemLabel = "mediocre" /> 
-                        <f:selectItem itemValue = "3" itemLabel = "good" /> 
+                        <f:selectItem itemValue = "10" itemLabel = "" />
+                        <f:selectItem itemValue = "0" itemLabel = "bad" /> 
+                        <f:selectItem itemValue = "1" itemLabel = "mediocre" /> 
+                        <f:selectItem itemValue = "2" itemLabel = "good" /> 
                         <f:selectItem itemValue = "3" itemLabel = "very_good" /> 
                     </h:selectOneMenu>
                 </div>
 
                 <div class="form-group">
-                    <h:commandButton class="btn btn-primary form-control" id="submit-button" value="SUBMIT" action="#{ratingEventNavigator.addSeries(ratingDataBean)}"/>  
+                    <h:commandButton class="btn btn-primary form-control" id="submit-button" value="SUBMIT" action="#{ratingEventNavigator.addSeries(userDataBean, ratingDataBean)}"/>  
                 </div>
 
                 <div class="form-group">
-                    <h:commandButton class="btn btn-primary form-control" id="find-button" value="FIND" action="#{ratingEventNavigator.find(ratingDataBean)}"/>  
+                    <h:commandButton class="btn btn-primary form-control" id="find-button" value="FIND" action="#{ratingEventNavigator.find(userDataBean, ratingDataBean)}"/>  
                 </div>
 
             </h:form>  
