@@ -19,8 +19,9 @@ public class Student implements Serializable {
     private  int nr;
 
     public Student(){
-        
+    
     }
+    
     public Student(String firstName, String lastName, int nr) {
         this.firstName = firstName;
         this.lastName = lastName;
