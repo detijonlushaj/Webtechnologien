@@ -1,7 +1,7 @@
 package de.hsh.steam.entities;
 
-import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Class Rating
@@ -13,10 +13,11 @@ public class Rating implements Serializable {
 
     private Score score;
     private String remark;
+
     private User ratingUser;
     private Series ratedSeries;
 
-    Rating() {
+    public Rating() {
     }
 
     /**
@@ -93,12 +94,7 @@ public class Rating implements Serializable {
 
     @Override
     public String toString() {
-        return "{"
-                + " score='" + getScore() + "'"
-                + ", remark='" + getRemark() + "'"
-                + ", ratingUser='" + getRatingUser() + "'"
-                + ", ratedSeries='" + getRatedSeries() + "'"
-                + "}";
+        return this.ratingUser.getUsername() + " watched " + this.ratedSeries.toString() + " - Rating : " + this.score + ", remark: " + this.remark;
     }
 
 }

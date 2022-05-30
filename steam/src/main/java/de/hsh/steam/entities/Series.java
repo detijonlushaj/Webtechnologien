@@ -1,8 +1,8 @@
 package de.hsh.steam.entities;
 
-import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Class Series
@@ -18,6 +18,9 @@ public class Series implements Serializable {
     private Streamingprovider streamedBy;
     private ArrayList<User> seenBy = new ArrayList<User>();
 
+    /**
+     * Constructor
+     */
     public Series() {
     }
 
@@ -139,8 +142,9 @@ public class Series implements Serializable {
     /**
      * @return String
      */
+    @Override
     public String toString() {
-        return this.title + " -  genre:" + this.genre + "   - watched on :" + this.streamedBy;
+        return this.title + " - numberOfSeasons:" + this.numberOfSeasons + " -  genre:" + this.genre + "   - watched on :" + this.streamedBy;
     }
 
 }

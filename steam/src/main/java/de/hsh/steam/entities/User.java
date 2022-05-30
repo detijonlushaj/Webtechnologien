@@ -1,8 +1,8 @@
 package de.hsh.steam.entities;
 
-import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Class User
@@ -12,15 +12,17 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = -3545765962123273389L;
 
-    // username ist eindeutig; darf nicht geändert werden
+    // username ist eindeutig
     private String username;
-
-    // password darf nicht geändert werden
+    // username und pwd können nicht geändert werden
     private String password;
-
     private ArrayList<Rating> myRatings = new ArrayList<Rating>();
 
+    /**
+     * Constructor
+     */
     public User() {
+
     }
 
     /**
