@@ -26,7 +26,7 @@ import javax.ws.rs.core.UriBuilder;
 /**
  * REST Web Service
  *
- * @author lushaj
+ * @author schehat
  */
 @Path("users")
 @XmlRootElement
@@ -98,5 +98,4 @@ public class UserResource {
         steamService.clear();
         return Response.status(200).entity(serializedSeriesRepository.getAllUsers()).build();
     }
-
 }

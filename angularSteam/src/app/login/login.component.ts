@@ -1,40 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { RestCallService } from '../rest-call.service';
-import { User } from './user';
+import { LoginService } from '../login.service';
+import { LogObj } from './LogObj';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  public user: User;
+export class LoginComponent implements OnInit {
+
   public username: string;
   public password: string;
+  public error: string = '';
+  
 
-  public error: string;
+  constructor(private rest:LoginService) {
+    this.username = '';
+    this.password = '';
+   }
 
-  constructor(private rest: RestCallService) {ß
-    // initialisiere Attribute
-    this.username = "";
-    this.password = "";
-    this.user = new User(this.username, this.password);
-    this.error = "";
+  async login(): Promise<void> {
+    const response = (await this.rest.putRest(this.username, this.password));
+    alert(await response.text());
   }
-
-  login(): void {
-    this.rest.putREST(this.username, this.password)
-      .subscribe(
-        (erg: User) => {
-          if (this.username == erg.username && this.password == erg.password) {
-            this.username = erg.username;
-            this.password = erg.password
-            this.error = 'login hat geklappt'
-          }
-        },
-        error => { this.error = 'Fehler aufgetaucht - Login fehlgeschlagen'; }
-      );
-
+  
+  ngOnInit() {
   }
 
 }

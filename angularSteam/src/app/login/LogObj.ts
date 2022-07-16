@@ -1,9 +1,9 @@
-export class User {
+export class LogObj {
     username: string;
     password: string;
 
     constructor(username: string, password: string) {
         this.username = username;
-        this.password = username;
+        this.password = password;
     }
 }
